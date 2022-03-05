@@ -1,0 +1,61 @@
+<div class="home">
+  <div class="container">
+    <div class="content">
+      <mat-card class="card" [routerLink]="['students']" *ngIf="user?.role?.id === 1 || user?.role?.id === 2">
+        <mat-card-header>
+          <mat-card-title>Estudiantes</mat-card-title>
+        </mat-card-header>
+        <div class="flex-center">
+          <mat-icon>group</mat-icon>
+        </div>
+        <mat-card-content>
+          <span class="description">
+            Lista todos los estudiantes.
+          </span>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card" [routerLink]="['professors']" *ngIf="user?.role?.id === 1 || user?.role?.id === 2">
+        <mat-card-header>
+          <mat-card-title>Profesores</mat-card-title>
+        </mat-card-header>
+        <div class="flex-center">
+          <mat-icon>school</mat-icon>
+        </div>
+        <mat-card-content>
+          <span class="description">
+            Lista todos los profesores.
+          </span>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card" [routerLink]="['optionals']">
+        <mat-card-header>
+          <mat-card-title>Optativas</mat-card-title>
+        </mat-card-header>
+        <div class="flex-center">
+          <mat-icon>auto_stories</mat-icon>
+        </div>
+        <mat-card-content>
+          <span class="description">
+            Lista todas las asignaturas optativas.
+          </span>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card" [routerLink]="['requests']">
+        <mat-card-header>
+          <mat-card-title>Solicitudes</mat-card-title>
+        </mat-card-header>
+        <div class="flex-center">
+          <mat-icon>assignment_ind</mat-icon>
+        </div>
+        <mat-card-content>
+          <span class="description">
+            Lista todas las solicitudes de los estudiantes.
+          </span>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

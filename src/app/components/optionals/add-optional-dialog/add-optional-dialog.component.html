@@ -1,0 +1,40 @@
+<div class="add-optative-dialog">
+  <mat-toolbar class="mb-2" color="primary" id="toolbarHeader" matDialogTitle>
+    <mat-toolbar-row>
+      <span *ngIf="!isEditing" class="mb-0">Adicionar optativa</span>
+      <span *ngIf="isEditing" class="mb-0">Editar optativa</span>
+      <button (click)="dialogRef.close()" aria-label="Close dialog" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content [formGroup]="optativeForm">
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Nombre</mat-label>
+      <input matInput type="text" [formControlName]="'name'" required placeholder="Nombre">
+      <mat-error>El nombre de la optativa es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Profesor</mat-label>
+      <mat-select [formControlName]="'professor'" placeholder="Profesor" required>
+        <mat-option *ngFor="let p of professors" [value]="p?.id">
+          <span>{{p.name}} {{p.last_name}}</span>
+        </mat-option>
+      </mat-select>
+      <mat-error>El profesor es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Aula</mat-label>
+      <input matInput type="text" [formControlName]="'classroom'" required placeholder="Aula">
+      <mat-error>El aula es requerido</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button [mat-dialog-close]="true">Cancelar</button>
+    <button mat-flat-button (click)="save()" color="primary" [disabled]="optativeForm.invalid">
+      Guardar
+    </button>
+  </div>
+</div>

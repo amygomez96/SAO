@@ -1,0 +1,76 @@
+#splash-screen {
+  background-image: url('../images/loading.svg');
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  .center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    place-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    .logo {
+      position: relative;
+      margin-bottom: 24px;
+
+      @keyframes ldio-oze2209ixw {
+        0% {
+          transform: rotate(0deg)
+        }
+        50% {
+          transform: rotate(180deg)
+        }
+        100% {
+          transform: rotate(360deg)
+        }
+      }
+
+      .ldio-oze2209ixw div {
+        position: absolute;
+        animation: ldio-oze2209ixw 0.8s linear infinite;
+        width: 160px;
+        height: 160px;
+        top: 20px;
+        left: 20px;
+        border-radius: 50%;
+        box-shadow: 0 6.2px 0 0 #ffffff;
+        transform-origin: 80px 83.1px;
+      }
+
+      .loadingio-spinner-eclipse-qhhg3htzpyr {
+        width: 200px;
+        height: 200px;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      .ldio-oze2209ixw {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: translateZ(0) scale(1);
+        backface-visibility: hidden;
+        transform-origin: 0 0; /* see note above */
+      }
+
+      .ldio-oze2209ixw div {
+        box-sizing: content-box;
+      }
+    }
+
+    span {
+      color: white;
+      font-size: 22px;
+    }
+  }
+}

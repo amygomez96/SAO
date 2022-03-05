@@ -1,0 +1,68 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$md-sao: (
+  50 : #e4eff8,
+  100 : #bcd7ed,
+  200 : #90bce1,
+  300 : #63a1d4,
+  400 : #418ccb,
+  500 : #2078c2,
+  600 : #1c70bc,
+  700 : #1865b4,
+  800 : #135bac,
+  900 : #0b489f,
+  A100 : #cddfff,
+  A200 : #9abfff,
+  A400 : #679eff,
+  A700 : #4d8eff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$app-light-primary: mat.define-palette($md-sao, 900, 700, 100);
+$app-light-accent: mat.define-palette(mat.$red-palette, 700, 600);
+$app-light-warn: mat.define-palette(mat.$red-palette, 500);
+
+$custom-typography: mat.define-typography-config(
+  $font-family: Poppins
+);
+
+$app-light-theme: mat.define-light-theme((
+  color: (
+    primary: $app-light-primary,
+    accent: $app-light-accent,
+    warn: $app-light-warn,
+  ),
+  typography: $custom-typography
+));
+
+@include mat.all-component-themes($app-light-theme);
+
+$primary-color: mat.get-color-from-palette($md-sao, 500);
+
+$grey-100: mat.get-color-from-palette(mat.$grey-palette, 100);
+$grey-200: mat.get-color-from-palette(mat.$grey-palette, 200);
+$grey-300: mat.get-color-from-palette(mat.$grey-palette, 300);
+$grey-400: mat.get-color-from-palette(mat.$grey-palette, 400);
+$grey-500: mat.get-color-from-palette(mat.$grey-palette, 500);
+$grey-600: mat.get-color-from-palette(mat.$grey-palette, 600);
+$grey-700: mat.get-color-from-palette(mat.$grey-palette, 700);
+$grey-800: mat.get-color-from-palette(mat.$grey-palette, 800);
+$grey-900: mat.get-color-from-palette(mat.$grey-palette, 900);
+

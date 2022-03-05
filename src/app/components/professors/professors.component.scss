@@ -1,0 +1,26 @@
+@import "src/assets/css/material-theme";
+
+.users {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    .tools {
+      width: 100%;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      button:not(:last-child) {
+        margin-right: 16px;
+      }
+    }
+  }
+}

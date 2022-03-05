@@ -1,0 +1,113 @@
+<div class="add-user-dialog">
+  <mat-toolbar class="mb-2" color="primary" id="toolbarHeader" matDialogTitle>
+    <mat-toolbar-row>
+      <span *ngIf="!isEditing" class="mb-0">Adicionar usuario</span>
+      <span *ngIf="isEditing" class="mb-0">Editar usuario</span>
+      <button (click)="dialogRef.close()" aria-label="Close dialog" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content [formGroup]="userForm">
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Nombre</mat-label>
+      <input matInput type="text" [formControlName]="'name'" required placeholder="Nombre">
+      <mat-error>El nombre del usuario es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Apellidos</mat-label>
+      <input matInput type="text" [formControlName]="'last_name'" required placeholder="Apellidos">
+      <mat-error>Los apellidos del usuario son requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Usuario</mat-label>
+      <input matInput type="text" [formControlName]="'username'" required placeholder="Usuario" [readonly]="isEditing"
+             [ngClass]="{'cursor-not-allowed': isEditing}">
+      <mat-error>El usuario es requerido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" [formControlName]="'email'" required placeholder="Correo electrónico"
+             [readonly]="isEditing" [ngClass]="{'cursor-not-allowed': isEditing}">
+      <mat-error *ngIf="userForm.controls['email'].hasError('required')">
+        El correo electrónico es requerido
+      </mat-error>
+      <mat-error
+        *ngIf="userForm.controls['email'].hasError('pattern') && !userForm.controls['email'].hasError('required')">
+        El correo electrónico posee un formato incorrecto
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Teléfono</mat-label>
+      <input matInput type="text" [formControlName]="'phone'" (keypress)="utilService.keyPressNumbers($event)"
+             placeholder="Teléfono">
+    </mat-form-field>
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Rol</mat-label>
+      <mat-select [formControlName]="'role'" placeholder="Rol" required>
+        <mat-option *ngFor="let role of roles" [value]="role?.value">
+          <span>{{role.name}}</span>
+        </mat-option>
+      </mat-select>
+      <mat-error>El rol es requerido</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Facultad</mat-label>
+      <mat-select [formControlName]="'faculty'" placeholder="Facultad">
+        <mat-option *ngFor="let role of [].constructor(7), let i = index" [value]="i + 1">
+          <span>{{i + 1}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="password-box" [formGroup]="formPassword" *ngIf="!isEditing">
+      <mat-form-field [appearance]="'outline'" class="w-100">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="inputType" [formControlName]="'password'" required placeholder="Contraseña">
+        <mat-icon *ngIf="inputType === 'password'" (click)="inputType = 'text'" matSuffix class="cursor-pointer">
+          visibility
+        </mat-icon>
+        <mat-icon *ngIf="inputType === 'text'" (click)="inputType = 'password'" matSuffix class="cursor-pointer">
+          visibility_off
+        </mat-icon>
+        <mat-error *ngIf="formPassword.controls['password'].hasError('required')">
+          Las contraseña es requerida
+        </mat-error>
+        <mat-error *ngIf="formPassword.controls['password'].hasError('mismatch')">
+          Las contraseñas no son iguales
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field [appearance]="'outline'" class="w-100">
+        <mat-label>Contraseña</mat-label>
+        <input matInput [type]="inputType" [formControlName]="'repeat'" required placeholder="Confirmar contraseña">
+        <mat-icon *ngIf="inputType === 'password'" (click)="inputType = 'text'" matSuffix class="cursor-pointer">
+          visibility
+        </mat-icon>
+        <mat-icon *ngIf="inputType === 'text'" (click)="inputType = 'password'" matSuffix class="cursor-pointer">
+          visibility_off
+        </mat-icon>
+        <mat-error *ngIf="formPassword.controls['repeat'].hasError('required')">
+          Las contraseña es requerida
+        </mat-error>
+        <mat-error *ngIf="formPassword.controls['repeat'].hasError('mismatch')">
+          Las contraseñas no son iguales
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button [mat-dialog-close]="true">Cancelar</button>
+    <button mat-flat-button (click)="save()" color="primary"
+            [disabled]="userForm.invalid || (formPassword.invalid || (formPassword.get('password')?.value?.length < 8 && !isEditing))">
+      Guardar
+    </button>
+  </div>
+</div>

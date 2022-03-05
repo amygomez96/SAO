@@ -1,0 +1,31 @@
+<div class="authentication-container">
+  <div class="authentication">
+    <div class="login" [formGroup]="form">
+      <img class="logo" src="assets/images/logo.svg" alt="">
+
+      <span class="title"><strong>Autenticarse</strong></span>
+
+      <mat-form-field appearance="outline" floatLabel="auto" class="w-100">
+        <mat-label>Usuario</mat-label>
+        <input type="text" matInput placeholder="Usuario" [formControlName]="'username'" (keyup.enter)="login()">
+        <mat-error>El usuario es requerido</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" floatLabel="auto" class="w-100">
+        <mat-label>Contraseña</mat-label>
+        <input [type]="inputType" matInput placeholder="Contraseña" [formControlName]="'password'" (keyup.enter)="login()">
+        <mat-icon *ngIf="inputType === 'password'" (click)="inputType = 'text'" matSuffix class="cursor-pointer">
+          visibility
+        </mat-icon>
+        <mat-icon *ngIf="inputType === 'text'" (click)="inputType = 'password'" matSuffix class="cursor-pointer">
+          visibility_off
+        </mat-icon>
+        <mat-error>La contraseña es requerida</mat-error>
+      </mat-form-field>
+
+      <button mat-flat-button color="primary" [disabled]="form.invalid" class="w-100" (click)="login()">
+        Acceder
+      </button>
+    </div>
+  </div>
+</div>

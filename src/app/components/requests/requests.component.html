@@ -1,0 +1,62 @@
+<div class="request">
+  <div class="container">
+    <div class="tools">
+      <button mat-stroked-button color="primary" (click)="refresh()">
+        <mat-icon>refresh</mat-icon>
+        Refrescar
+      </button>
+
+      <button mat-stroked-button color="primary" (click)="addRequest()" *ngIf="user?.role?.id === 3">
+        <mat-icon>add</mat-icon>
+        Agregar
+      </button>
+
+      <button mat-stroked-button color="primary" (click)="removeRequest()" *ngIf="selection?.selected?.length > 0">
+        <mat-icon>delete</mat-icon>
+        Eliminar
+      </button>
+    </div>
+    <table class="w-100" [dataSource]="dataSource" mat-table>
+      <ng-container matColumnDef="select">
+        <th *matHeaderCellDef mat-header-cell style="width: 7%;">
+          <div>
+            <!-- start start -->
+            <mat-checkbox (change)="$event ? masterToggle() : null" [aria-label]="checkboxLabel()"
+                          [checked]="selection.hasValue() && isAllSelected()" color="primary"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </div>
+        </th>
+        <td *matCellDef="let row" mat-cell>
+          <!-- start start -->
+          <div>
+            <mat-checkbox (change)="$event ? selection.toggle(row) : null" (click)="$event.stopPropagation()"
+                          [aria-label]="checkboxLabel(row)" [checked]="selection.isSelected(row)" color="primary">
+            </mat-checkbox>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="student">
+        <th *matHeaderCellDef mat-header-cell>
+          <span class="table-column-header-text">Estudiante</span>
+        </th>
+        <td (click)="selection.toggle(element)" *matCellDef="let element" class="cursor-pointer" mat-cell>
+          <span class="mat-body-1"> {{element?.student?.name}} {{element?.student?.last_name}}</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="optative">
+        <th *matHeaderCellDef mat-header-cell>
+          <span class="table-column-header-text">Optativa</span>
+        </th>
+        <td (click)="selection.toggle(element)" *matCellDef="let element" class="cursor-pointer" mat-cell>
+          <span class="mat-body-1"> {{element?.optative?.name}}</span>
+        </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+  </div>
+</div>

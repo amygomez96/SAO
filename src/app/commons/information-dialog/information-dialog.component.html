@@ -1,0 +1,19 @@
+<div class="information-dialog">
+  <mat-toolbar class="mb-2" color="primary" id="toolbarHeader" matDialogTitle>
+    <mat-toolbar-row>
+      <span class="mb-0">{{title ? title : 'Información'}}</span>
+      <button (click)="dialogRef.close()" aria-label="Close dialog" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <span>{{message}}</span>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button [mat-dialog-close]="{action: false}">Cancelar</button>
+    <button mat-flat-button [mat-dialog-close]="{action: true}" color="primary">
+      Aceptar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+@import "src/assets/css/material-theme";
+
+.authentication-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: $grey-100;
+
+  .authentication {
+    display: flex;
+    flex-direction: row;
+
+    .login {
+      min-width: 400px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 0 6px 1px $grey-500;
+
+      img {
+        &.logo {
+          height: 100px;
+          object-fit: cover;
+        }
+      }
+
+      span {
+        &.title {
+          font-size: 32px;
+          line-height: 42px;
+          margin-bottom: 24px;
+        }
+      }
+
+      button {
+        height: 52px;
+      }
+    }
+  }
+}

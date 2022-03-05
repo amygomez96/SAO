@@ -1,0 +1,31 @@
+@import "src/assets/css/material-theme";
+
+.banner {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 3px 0 $grey-500;
+
+  mat-icon,
+  span {
+    color: $grey-600;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      &.logo {
+        width: 60px;
+        object-fit: cover;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

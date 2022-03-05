@@ -1,0 +1,27 @@
+<div class="add-user-dialog">
+  <mat-toolbar class="mb-2" color="primary" id="toolbarHeader" matDialogTitle>
+    <mat-toolbar-row>
+      <span class="mb-0">Adicionar optativa</span>
+      <button (click)="dialogRef.close()" aria-label="Close dialog" mat-icon-button>
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div mat-dialog-content [formGroup]="requestForm">
+    <mat-form-field [appearance]="'outline'" class="w-100">
+      <mat-label>Optativa</mat-label>
+      <mat-select [formControlName]="'optative'" placeholder="Optativa" required>
+        <mat-option *ngFor="let opt of optatives" [value]="opt?.id">
+          <span>{{opt.name}}</span>
+        </mat-option>
+      </mat-select>
+      <mat-error>Seleccionar la optativa es requerida</mat-error>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button [mat-dialog-close]="true">Cancelar</button>
+    <button mat-flat-button (click)="save()" color="primary" [disabled]="requestForm.invalid">
+      Guardar
+    </button>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+@import "src/assets/css/material-theme";
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 60px;
+
+      .card {
+        margin: 0 32px;
+        width: 352px;
+        height: 256px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .mat-card-title {
+          color: rgba($primary-color, .8);
+        }
+
+        span.description {
+          color: $grey-600;
+        }
+
+        .flex-center {
+          mat-icon {
+            font-size: 96px;
+            width: 96px;
+            height: 96px;
+            color: rgba($primary-color, .8);
+          }
+        }
+
+        &:hover {
+          box-shadow: 0 0 10px 2px rgba($primary-color, .8);
+          cursor: pointer;
+
+          .mat-card-title,
+          .flex-center mat-icon,
+          span.description {
+            color: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}
