@@ -6,17 +6,17 @@
         Refrescar
       </button>
 
-      <button mat-stroked-button color="primary" (click)="addUser()">
+      <button mat-stroked-button color="primary" (click)="addUser()" *ngIf="user?.role?.id === 1">
         <mat-icon>add</mat-icon>
         Agregar
       </button>
 
-      <button mat-stroked-button color="primary" (click)="editUser()" *ngIf="selection?.selected?.length > 0">
+      <button mat-stroked-button color="primary" (click)="editUser()" *ngIf="selection?.selected?.length > 0 && user?.role?.id === 1">
         <mat-icon>edit</mat-icon>
         Editar
       </button>
 
-      <button mat-stroked-button color="primary" (click)="removeUser()" *ngIf="selection?.selected?.length > 0">
+      <button mat-stroked-button color="primary" (click)="removeUser()" *ngIf="selection?.selected?.length > 0 && user?.role?.id === 1">
         <mat-icon>delete</mat-icon>
         Eliminar
       </button>
