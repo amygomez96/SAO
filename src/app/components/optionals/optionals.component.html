@@ -1,7 +1,7 @@
 <div class="optionals">
   <div class="container">
     <div class="tools">
-      <button mat-stroked-button color="primary" (click)="refresh()">
+      <button mat-stroked-button color="primary" (click)="search()">
         <mat-icon>refresh</mat-icon>
         Refrescar
       </button>
@@ -11,12 +11,12 @@
         Agregar
       </button>
 
-      <button mat-stroked-button color="primary" (click)="editOptative()" *ngIf="selection?.selected?.length > 0 && user?.role?.id === 1">
+      <button mat-stroked-button color="primary" (click)="editOptative()" *ngIf="selection?.selected?.length === 1 && user?.role?.id === 1">
         <mat-icon>edit</mat-icon>
         Editar
       </button>
 
-      <button mat-stroked-button color="primary" (click)="removeOptative()" *ngIf="selection?.selected?.length > 0 && user?.role?.id === 1">
+      <button mat-stroked-button color="primary" (click)="removeOptative()" *ngIf="selection?.selected?.length === 1 && user?.role?.id === 1">
         <mat-icon>delete</mat-icon>
         Eliminar
       </button>

@@ -1,5 +1,5 @@
-import { Component, OnDestroy, OnInit} from '@angular/core';
-import { Subject} from "rxjs";
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject } from "rxjs";
 import { MatTableDataSource } from "@angular/material/table";
 import { SelectionModel } from "@angular/cdk/collections";
 import { Router } from "@angular/router";
@@ -20,7 +20,7 @@ export class RequestsComponent implements OnInit, OnDestroy {
   private unsubscribeAll: Subject<any> = new Subject<any>();
   public dataSource: MatTableDataSource<any> = new MatTableDataSource();
   public selection: SelectionModel<any> = new SelectionModel<any>(true, []);
-  public displayedColumns: string[] = ['select', 'student', 'optative'];
+  public displayedColumns: string[] = ['select', 'student', 'optative', 'actions'];
   public user: any;
 
   constructor(
@@ -66,7 +66,7 @@ export class RequestsComponent implements OnInit, OnDestroy {
     this.router.navigate(['']).then();
   }
 
-  private search(): void {
+  public search(): void {
     if (this.user?.role?.id === 1 || this.user?.role?.id === 2) {
       this.requestService.getAllRequest()
         .subscribe((data: any) => {
@@ -86,26 +86,16 @@ export class RequestsComponent implements OnInit, OnDestroy {
     }
   }
 
-  public refresh(): void {
-    this.router.navigate(['/administration/requests'], {
-      queryParams: {
-        timeStamp: new Date().toTimeString()
-      }
-    }).then();
-  }
-
   public isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   public masterToggle(): void {
     this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach((row) => this.selection.select(row));
   }
 
-  /** The label for the checkbox on the passed row */
   public checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
@@ -145,11 +135,21 @@ export class RequestsComponent implements OnInit, OnDestroy {
           this.requestService.removeRequest(this.selection?.selected[0]?.id)
             .subscribe(() => {
               this._snackBar.open('Usuario eliminado correctamente');
-              this.refresh();
+              this.search();
             }, (error) => {
               this._snackBar.open(error?.error?.message ? error?.error?.message : 'No se ha podido eliminar el usuario');
             })
         }
+      });
+  }
+
+  public assignRequest(): void {
+    this.requestService.assignRequest(this.selection.selected[0]?.id)
+      .subscribe(() => {
+        this._snackBar.open('Asignatura optativa asignada correctamente');
+        this.search();
+      }, () => {
+        this._snackBar.open('Ha ocurrido un error al asignar optativa');
       });
   }
 }

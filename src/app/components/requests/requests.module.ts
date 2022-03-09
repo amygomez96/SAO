@@ -10,6 +10,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { InformationDialogModule } from "../../commons/information-dialog/information-dialog.module";
 import { UserService } from "../../services/user.service";
 import { AddRequestDialogModule } from "./add-request-dialog/add-request-dialog.module";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddRequestDialogModule } from "./add-request-dialog/add-request-dialog.
     MatTableModule,
     MatCheckboxModule,
     InformationDialogModule,
-    AddRequestDialogModule
+    AddRequestDialogModule,
+    MatTooltipModule
   ],
   providers: [RequestService, UserService]
 })

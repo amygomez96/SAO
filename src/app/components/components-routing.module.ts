@@ -8,10 +8,6 @@ const routes: Routes = [
     component: ComponentsComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
-      },
-      {
         path: 'home',
         loadChildren: () => import('./home/home.module').then((m) => m.HomeModule)
       },
@@ -39,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'home'
   }
 ];
 

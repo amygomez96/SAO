@@ -67,7 +67,7 @@ export class OptionalsComponent implements OnInit, OnDestroy {
     this.router.navigate(['']).then();
   }
 
-  private search(): void {
+  public search(): void {
     this.optativeService.getAllOptatives()
       .subscribe((data: any) => {
         this.dataSource = new MatTableDataSource(data);
@@ -76,15 +76,6 @@ export class OptionalsComponent implements OnInit, OnDestroy {
         this.selection.clear();
       });
   }
-
-  public refresh(): void {
-    this.router.navigate(['/administration/optionals'], {
-      queryParams: {
-        timeStamp: new Date().toTimeString()
-      }
-    }).then();
-  }
-
 
   public isAllSelected(): boolean {
     const numSelected = this.selection.selected.length;
@@ -122,7 +113,7 @@ export class OptionalsComponent implements OnInit, OnDestroy {
           this.optativeService.removeOptative(this.selection?.selected[0]?.id)
             .subscribe(() => {
               this._snackBar.open('Usuario eliminado correctamente');
-              this.refresh();
+              this.search();
             }, (error) => {
               this._snackBar.open(error?.error?.message ? error?.error?.message : 'No se ha podido eliminar la optativa');
             })

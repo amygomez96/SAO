@@ -9,6 +9,7 @@ import { Observable } from "rxjs";
 export class RequestService {
   private urlRequest: string = environment.apiUrl + '/request'
   private urlMineRequest: string = environment.apiUrl + '/request/mine'
+  private urlAssignRequest: string = environment.apiUrl + '/request/approve'
 
   constructor(protected httpClient: HttpClient) {
   }
@@ -35,5 +36,9 @@ export class RequestService {
 
   public removeRequest(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.urlRequest + '/' + id);
+  }
+
+  public assignRequest(id: number): Observable<any> {
+    return this.httpClient.post<any>(this.urlAssignRequest, {id});
   }
 }

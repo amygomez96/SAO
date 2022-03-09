@@ -48,6 +48,21 @@
           }
         }
       }
+
+      .optative-assigned {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 16px;
+        border-radius: 8px;
+        width: 100%;
+        text-align: center;
+        background-color: rgba($primary-color, .2);
+
+        mat-icon {
+          margin-right: 16px;
+        }
+      }
     }
   }
 }

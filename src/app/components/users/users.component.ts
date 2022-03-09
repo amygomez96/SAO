@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.unsubscribeAll.complete();
   }
 
-  private search(): void {
+  public search(): void {
     this.userService.getAllUsers()
       .subscribe((data: any) => {
         this.dataSource = new MatTableDataSource(data);
@@ -72,14 +72,6 @@ export class UsersComponent implements OnInit, OnDestroy {
       }, () => {
         this.selection.clear();
       });
-  }
-
-  public refresh(): void {
-    this.router.navigate(['/administration/users'], {
-      queryParams: {
-        timeStamp: new Date().toTimeString()
-      }
-    }).then();
   }
 
   public isAllSelected(): boolean {
@@ -150,7 +142,7 @@ export class UsersComponent implements OnInit, OnDestroy {
           this.userService.removeUser(this.selection?.selected[0]?.id)
             .subscribe(() => {
               this._snackBar.open('Usuario eliminado correctamente');
-              this.refresh();
+              this.search();
             }, (error) => {
               this._snackBar.open(error?.error?.message ? error?.error?.message : 'No se ha podido eliminar el usuario');
             })

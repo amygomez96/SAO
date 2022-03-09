@@ -22,5 +22,15 @@
         margin-right: 16px;
       }
     }
+
+    button {
+      &.assign-request {
+        opacity: .2;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
   }
 }

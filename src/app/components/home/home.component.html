@@ -1,7 +1,8 @@
 <div class="home">
   <div class="container">
-    <div class="content">
-      <mat-card class="card" [routerLink]="['students']" *ngIf="user?.role?.id === 1 || user?.role?.id === 2">
+    <div class="content" *ngIf="user?.role?.id !== 3 || (user?.role?.id === 3 && !user?.optional?.id)">
+      <mat-card class="card" [routerLink]="['/administration/students']"
+                *ngIf="user?.role?.id === 1 || user?.role?.id === 2">
         <mat-card-header>
           <mat-card-title>Estudiantes</mat-card-title>
         </mat-card-header>
@@ -15,7 +16,8 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card class="card" [routerLink]="['professors']" *ngIf="user?.role?.id === 1 || user?.role?.id === 2">
+      <mat-card class="card" [routerLink]="['/administration/professors']"
+                *ngIf="user?.role?.id === 1 || user?.role?.id === 2">
         <mat-card-header>
           <mat-card-title>Profesores</mat-card-title>
         </mat-card-header>
@@ -29,7 +31,7 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card class="card" [routerLink]="['optionals']">
+      <mat-card class="card" [routerLink]="['/administration/optionals']">
         <mat-card-header>
           <mat-card-title>Optativas</mat-card-title>
         </mat-card-header>
@@ -43,7 +45,7 @@
         </mat-card-content>
       </mat-card>
 
-      <mat-card class="card" [routerLink]="['requests']">
+      <mat-card class="card" [routerLink]="['/administration/requests']">
         <mat-card-header>
           <mat-card-title>Solicitudes</mat-card-title>
         </mat-card-header>
@@ -56,6 +58,12 @@
           </span>
         </mat-card-content>
       </mat-card>
+    </div>
+    <div class="content" *ngIf="user?.role?.id === 3 && user?.optional?.id">
+      <div class="optative-assigned">
+        <mat-icon color="primary">tips_and_updates</mat-icon>
+        <span>Se le ha asignado la asignatura optativa <strong>{{user.optional.name}}</strong></span>
+      </div>
     </div>
   </div>
 </div>
